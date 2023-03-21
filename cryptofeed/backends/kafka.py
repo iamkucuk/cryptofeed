@@ -26,7 +26,7 @@ from confluent_kafka import KafkaException
 
 LOG = logging.getLogger('feedhandler')
 
-def to_dict_wrapper(obj:AvroModel, ctx):
+def to_dict_wrapper(obj, ctx):
     return obj.asdict()
 
 class AIOProducer:
