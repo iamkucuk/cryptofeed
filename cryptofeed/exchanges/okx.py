@@ -1,5 +1,5 @@
 '''
-Copyright (C) 2017-2023 Bryant Moscon - bmoscon@gmail.com
+Copyright (C) 2017-2024 Bryant Moscon - bmoscon@gmail.com
 
 Please see the LICENSE file for the terms and conditions
 associated with this software.
@@ -266,7 +266,7 @@ class OKX(Feed, OKXRestMixin):
                 Decimal(update['fundingRate']),
                 None,
                 self.timestamp_normalize(int(update['fundingTime'])),
-                predicted_rate=Decimal(update['nextFundingRate']),
+                predicted_rate=Decimal(update['nextFundingRate']) if update['nextFundingRate'] != '' else None,
                 raw=update
             )
             await self.callback(FUNDING, f, timestamp)
@@ -424,14 +424,14 @@ class OKX(Feed, OKXRestMixin):
                 await self._ticker(msg, timestamp)
             elif self.websocket_channels[TRADES] in msg['arg']['channel']:
                 await self._trade(msg, timestamp)
+            elif self.websocket_channels[CANDLES] in msg['arg']['channel']:
+                await self._candle(msg, timestamp)
             elif self.websocket_channels[FUNDING] in msg['arg']['channel']:
                 await self._funding(msg, timestamp)
             elif self.websocket_channels[ORDER_INFO] in msg['arg']['channel']:
                 await self._order(msg, timestamp)
             elif self.websocket_channels[OPEN_INTEREST] in msg['arg']['channel']:
                 await self._open_interest(msg, timestamp)
-            elif self.websocket_channels[CANDLES] in msg['arg']['channel']:
-                await self._candle(msg, timestamp)
         else:
             LOG.warning("%s: Unhandled message %s", self.id, msg)
 

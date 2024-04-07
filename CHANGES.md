@@ -1,6 +1,22 @@
 ## Changelog
 
-### 2.3.2
+### 2.4.1
+ * Bugfix: Handle empty nextFundingRate in OKX
+ * Bugfix: Handle null next_funding_time and estimated_rate in HuobiSwap funding
+ * Update: transitioned from Coinbase Pro (retired) to Coinbase Advanced Trade
+ * Feature: Bybit spot support
+ * Update: Bybit migrate to API V5 for public streams
+
+### 2.4.0 (2024-01-07)
+ * Update: Fix tests
+ * Update: Okcoin moved to v5 API used by OKX
+ * Bugfix: InfluxDB none type conversions
+ * New Exchange: GateIO Futures
+ * Bugfix: Fix instrument types in symbol parsing on Bitmex
+ * Bugfix: fix crash issue when init symbol data on Kraken Futures
+ * Updates: Remove closed exchanges, clean up feeds (update APIs, adjust symbol parsing, etc)
+
+### 2.3.2 (2023-05-27)
  * Bugfix: Fix Socket backend
  * Bugfix: Fix AUCTION symbol parsing on Coinbase
  * Bugfix: Fix PERPETUAL symbol parsing on Phemex
@@ -11,6 +27,7 @@
  * Update: Switch from unmaintained aioredis to redis-py
  * Bugfix: Correct value for Crypto.com Ask price
  * Update: Remove cChardet dependency
+ * Feature: Binance TR support
 
 ### 2.3.1 (2022-10-31)
  * Bugfix: timestamp not reset correctly on reconnect
