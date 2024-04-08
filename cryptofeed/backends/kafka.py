@@ -167,6 +167,7 @@ class BookKafka(KafkaCallback, BackendBookCallback):
         self.snapshots_only = snapshots_only
         self.snapshot_interval = snapshot_interval
         self.snapshot_count = defaultdict(int)
+        self.depth = kwargs.pop('depth', None)
         super().__init__(*args, **kwargs)
 
 
